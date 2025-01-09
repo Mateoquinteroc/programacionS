@@ -1,0 +1,334 @@
+.cardDetailContainer
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  width: 90vw
+  height: 70vh
+  background-color: rgba(248, 250, 252, 0.9) // bg-slate-50/90
+  border-radius: 1.5rem
+  z-index: 10
+  overflow: hidden
+  display: flex
+  flex-direction: column
+
+.flex
+  display: flex
+
+.hidden
+  display: none
+
+.closeIcon
+  position: absolute
+  top: 0.5rem
+  right: 0.5rem
+  height: 2rem
+  width: 2rem
+  color: black
+  cursor: pointer
+
+.prevIcon, .nextIcon
+  position: absolute
+  top: 50%
+  transform: translateY(-50%)
+  height: 2rem
+  width: 2rem
+  cursor: pointer
+  color: black
+
+.prevIcon
+  left: 1rem
+
+.nextIcon
+  right: 1rem
+
+.eventCardDetail
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  position: relative
+  width: 85vw
+  height: 58%
+  margin: 2.5rem auto
+  border-radius: 1.5rem
+  transition: transform 0.3s ease-in-out
+  background-color: inherit
+
+.eventImageContainer
+  grid-column: span 1
+  display: flex
+  justify-content: center
+  align-items: center
+  overflow: hidden
+  padding: 0.5rem 
+  margin: 0.5rem 
+  border-radius: 1rem 
+
+.eventImage
+  max-width: 100% 
+  max-height: 100% 
+  object-fit: contain 
+  object-position: center 
+  border-radius: 1rem
+  
+
+.eventDate, .eventTime, .eventTitle, .eventLocation, .eventDetails
+  margin-left: 2rem
+  font-family: "Open Sans", sans-serif
+  color: white
+
+.eventDate
+  font-size: 3rem
+  font-weight: bold
+.eventDatePanel
+  font-size: 2rem
+  grid-row-start: 1
+  grid-column-start: 2
+
+.eventTimePanel
+  font-size: 2rem
+  grid-column-start: 2 
+  grid-row-start: 1
+  position: absolute
+  top: 8rem 
+.eventTime
+  font-size: 2rem
+  margin-top: 1rem
+
+.eventTitlePanel
+  font-size: 1.5rem
+  grid-column-start: 2
+  grid-row-start: 1
+  position: absolute
+  top: 15rem
+  width: 40%
+.eventTitle
+  font-size: 2rem
+  font-weight: bold
+  margin-top: 1rem
+  grid-column-start: 2
+
+.eventDetailsPanel
+  font-size: 1.5rem
+  grid-column-start: 2
+  grid-row-end: 3
+  position: absolute
+  top: 20rem
+.eventDetails
+  font-size: 1.5rem
+  margin-top: 1rem
+  grid-column-start: 2
+  margin-left: 0
+
+.eventLocationPanel
+  font-size: 2rem
+  grid-column-start: 2
+  bottom: 1rem
+  position: absolute
+.eventLocation
+  font-size: 2rem
+  margin-top: 1rem
+  grid-column-start: 2
+
+
+.eventDescriptionTitle
+  position: absolute
+  transform: translateX(-80%) 
+  width: auto
+  height: 2.5rem 
+  font-size: 2rem
+  font-weight: bold
+  color: white
+  left: 50%
+  font-family: "Open Sans", sans-serif
+  margin: 0.75rem 
+  margin-top: 1rem
+  grid-column-start: 2
+
+.eventDescriptionPanel
+  position: absolute
+  grid-column-start: 2
+  left: 40%
+  top: 5rem
+  font-size: 1rem
+.eventDescription
+  position: absolute
+  right: 2rem
+  top: 2rem
+  width: 40%
+  height: 50%
+  font-size: 1.25rem
+  color: white
+  font-family: "Open Sans", sans-serif
+  overflow-y: auto
+  padding-right: 1rem
+
+.scrollableEventList
+  position: fixed
+  bottom: 1rem
+  width: 90vw
+  display: flex
+  flex-direction: row
+  gap: 1rem
+  overflow-x: scroll
+  padding: 1rem
+
+.eventContainer
+  flex: 0 0 auto
+  display: flex
+  justify-content: center
+  align-items: center
+
+.eventCard
+  width: 200px
+  height: 200px
+  padding: 1.5rem
+  border-radius: 1rem
+  cursor: pointer
+  transition: transform 0.3s ease-in-out
+
+.eventCard:hover
+  transform: translateY(-0.5rem)
+
+.eventType, .eventDate, .eventTime, .eventTitle, .eventLocation
+  font-family: "Open Sans", sans-serif
+  font-size: 0.8rem
+  color: white
+  margin: 0.5rem 0
+
+@media (min-width: 1000px) and (max-width: 1800px)  /* Pantallas de portátiles */
+  .eventCard 
+    width: 140px
+    height: 140px
+    overflow: hidden 
+    padding: 10px
+  .eventType, .eventDate, .eventTime, .eventTitle, .eventLocation
+    font-size: 0.7rem
+    margin: 0.3rem 0
+  .eventDatePanel
+    font-size: 1.5rem
+    font-weight: bold
+    margin-top: 1rem
+  .eventTimePanel
+    font-size: 1.5rem
+    top: 6rem
+  .eventTitlePanel
+    font-size: 1rem
+    top: 9rem
+    width: 30%
+  .eventDetailsPanel
+    font-size: 1rem
+    top: 14rem
+  .eventLocationPanel
+    font-size: 1rem
+  .eventDescriptionTitle
+    left: 55%
+@media (min-width: 2560px)  /* Pantallas 4K o mayores */
+  .eventCardDetail
+    width: 85vw
+    height: 70%
+  .eventCard 
+    width: 350px
+    height: 350px
+    overflow: hidden 
+  .eventImageContainer
+    padding: 1rem 
+    margin: 1rem 
+
+  .eventImage
+    width: 80vw 
+    height: 80vh 
+    border-radius: 2rem 
+  .eventType, .eventDate, .eventTime, .eventTitle, .eventLocation
+    font-size: 2rem
+    margin: 0.3rem 0
+  .eventDatePanel
+    margin-top: 2rem
+    font-size: 4rem
+    font-weight: bold
+  .eventTimePanel
+    font-size: 3rem
+    top: 20rem
+  .eventTitlePanel
+    font-size: 3rem
+    width: 35%
+    top: 30rem
+  .eventDetailsPanel
+    font-size: 3rem
+    top: 45rem
+  .eventLocationPanel
+    font-size: 3rem
+  .eventDescriptionTitle
+    font-size: 4rem
+    left: 50%
+  .eventDescriptionPanel
+    font-size: 3rem
+    top: 8rem
+    margin-right: 100px
+  .prevIcon, .nextIcon, .closeIcon
+    height: 3rem
+    width: 3rem
+  .prevIcon, .nextIcon
+    top: 40%
+@media (max-width: 940px) and (orientation: portrait)  /* Móviles en orientación vertical */
+  .eventCardDetail
+    width: 85vw
+    height: 60%
+  .eventCard 
+    width: 100px
+    height: 100px
+    overflow: hidden 
+    padding: 10px
+  .eventImage
+    display: none // Oculta solo la imagen
+
+  .eventType, .eventDate, .eventTime, .eventTitle, .eventLocation
+    font-size: 0.5rem
+    margin: 0
+  .closeIcon
+    width: 1.5rem
+    height: 1.5rem
+    top: 0.5rem
+    right: 0.5rem
+  .eventDatePanel, .eventTimePanel, .eventDetailsPanel, .eventLocationPanel
+    font-size: 1rem
+    grid-column: span 2
+    grid-row-start: 1
+    grid-column-start: 1
+    margin-left: 1rem
+  .eventDatePanel
+    margin-top: 0.5rem
+    width: 100%
+  .eventTimePanel
+    top: 3.5rem
+  .eventTitlePanel
+    top: 4.5rem
+    font-size: 0.8rem
+    grid-column-start: 1
+    width: 80%
+    margin-left: 1rem
+
+  .eventDetailsPanel
+    top: 9rem
+  .eventLocationPanel
+    top: 10rem
+
+  .eventDescriptionTitle
+    font-size: 1rem
+    grid-row-start: 2
+    grid-column-end: 1
+    position: absolute
+    margin-left: 2.5rem
+    margin-bottom: 30px
+    bottom: 1rem
+
+  .eventDescriptionPanel
+    font-size: 0.5rem
+    grid-row-start: 2
+    grid-column-start: 1
+    left: 0
+    top: -4rem
+    position: absolute
+    margin-left: 0.5rem
+    width: 90%
+    grid-column: span 3
+    overflow-y: auto

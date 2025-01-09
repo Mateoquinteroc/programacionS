@@ -1,0 +1,15 @@
+.fondoContainer
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: -1 // Envía el fondo detrás del contenido
+  overflow: hidden // Asegura que no haya elementos fuera de los límites
+  background-attachment: fixed // Hace que el fondo permanezca quieto
+  background-size: cover
+  background-repeat: no-repeat
+
+@media (max-width: 768px) // En móviles
+.fondoContainer
+    background-attachment: scroll // Permite que el contenido se desplace con el scroll

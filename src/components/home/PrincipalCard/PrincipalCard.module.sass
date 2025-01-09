@@ -1,0 +1,146 @@
+.container
+  display: grid
+  justify-items: start
+  position: relative
+  height: 12vh
+  z-index: 1000
+  
+
+.header
+  position: absolute
+  top: 0
+  right: 0
+  left: 0
+  width: 100vw
+  height: 10vh
+  padding: 10px
+  margin-top: 0
+  margin-left: 0
+  margin-right: 0
+  background-color: rgb(179,54,76, 0.8)
+
+.title
+  margin-left: 3%
+  font-size: 1rem
+  font-weight: bold
+  color: #ff0000
+  background-color: white
+  padding-left: 0.5rem
+  padding-right: 1rem
+  margin-top: 1rem
+  margin-bottom: 0.5rem
+  mix-blend-mode: lighten
+
+.subtitle
+  margin-left: 3%
+  font-size: 1rem
+  font-weight: lighter
+  color: #ff0000
+  background-color: white
+  padding-left: 0.5rem
+  padding-right: 1rem
+  display: inline-block
+  mix-blend-mode: lighten
+
+.description
+  position: relative
+  left: 50%
+  top: -80%
+  transform: translateX(-50%)
+  font-size: 1.5rem
+  font-weight: bold
+  color: white
+  text-align: center
+  mix-blend-mode: lighten
+
+.dateContainer
+  position: absolute
+  top: 45%
+  right: 0
+  transform: translateY(-50%)
+  text-align: right
+  padding-right: 1vw
+
+.dateLarge
+  font-size: 1.2rem
+  font-weight: bolder
+  color: white
+
+.dateSmall
+  font-size: 0.8rem
+  font-weight: normal
+  color: white
+  letter-spacing: 0.1em
+
+.year
+  font-size: 0.8rem
+  font-weight: normal
+  color: white
+
+@media (min-width: 2560px)  /* Pantallas 4K o mayores */
+  .title
+    font-size: 4rem
+    margin-top: 1%
+  .subtitle
+    font-size: 3rem 
+  .description
+    font-size: 2vw
+    top:-90%
+  .dateContainer
+    top: 40%
+  .dateLarge
+    font-size: 3rem
+  .dateSmall
+    font-size: 2.2rem
+  .year
+    font-size: 2rem  
+@media (min-width: 1360px) and (max-width: 1920px)  /* Pantallas de portátiles */
+  .title
+    font-size: 1.5rem  /* Reduce el tamaño de la fuente */
+    margin-top: 1%   /* Ajusta el margen superior */
+
+  .subtitle
+    font-size: 1.5rem  /* Ajusta el tamaño de la fuente para subtítulos */
+
+  .description
+    font-size: 2rem  /* Ajusta el tamaño de la fuente a un valor relativo */
+    top: -80%   /* Ajusta la posición vertical */
+
+  .dateContainer
+    top: 45%  /* Ajusta la posición del contenedor de la fecha */
+
+  .dateLarge
+    font-size: 1rem  /* Reduce el tamaño de la fuente para .dateLarge */
+
+  .dateSmall
+    font-size: 0.8rem  /* Reduce el tamaño de la fuente para .dateSmall */
+
+  .year
+    font-size: 0.8rem  /* Ajusta el tamaño de la fuente para .year */
+
+@media (max-width: 768px) and (orientation: portrait)  /* Móviles en orientación vertical */
+  .header
+    height: 7vh
+  .title
+    font-size: 2.5vw  /* Ajusta el tamaño de la fuente para pantallas pequeñas */
+    margin-top: 5
+  
+  .subtitle
+    font-size:2vw  /* Reduce el tamaño de la fuente para subtítulos */
+
+  .description
+    font-size: 3vw  /* Usa unidades relativas para que el tamaño se adapte */
+    top: -120%  /* Ajusta la posición vertical para pantallas más pequeñas */
+    transform: translateX(-35%)
+
+  .dateContainer
+    top: 30%  /* Ajusta la posición del contenedor de la fecha */
+
+  .dateLarge
+    font-size: 0.5rem  /* Ajusta el tamaño de la fuente para .dateLarge */
+
+  .dateSmall
+    font-size: 0.5rem  /* Ajusta el tamaño de la fuente para .dateSmall */
+
+  .year
+    font-size: 0.5rem  /* Ajusta el tamaño de la fuente para .year */
