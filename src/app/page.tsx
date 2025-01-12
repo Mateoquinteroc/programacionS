@@ -6,6 +6,8 @@ import { CardDetail } from "app/components/home/CardDetail";
 import { CardDia } from "app/components/home/CardDia";
 import { PrincipalCard } from "app/components/home/PrincipalCard";
 import { CardSelectProvider } from "app/components/home/Context/Context";
+import { FooterCard } from "app/components/home/FooterCard/FooterCard"
+
 
 // Define los tipos para eventos y días
 interface Event {
@@ -85,6 +87,7 @@ export default function Home() {
       <main>
         <Fondo />
         <PrincipalCard />
+        <FooterCard />
         <CardDetail eventos={Object.values(eventsByDay).flat()} />
         <div>
             <CardDia/>

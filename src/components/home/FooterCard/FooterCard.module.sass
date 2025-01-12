@@ -1,0 +1,109 @@
+/* Estilos en Sass.module.sass */
+.contenedor
+  position: fixed
+  bottom: 0
+  width: 100%
+  display: flex
+  justify-content: flex-start 
+  align-items: center
+  padding: 0 1rem
+  box-sizing: border-box
+  background-color: rgba(0, 0, 0, 0.75)
+  z-index: 10
+
+.botonUbicacion, .botonChat
+  position: relative
+  display: flex
+  justify-content: center 
+  align-items: center 
+  height: 70px
+  width: 70px
+  background-color: #1d4ed8
+  color: white
+  font-size: 1rem
+  font-weight: bold
+  border-radius: 50%
+  font-family: 'Open Sans', sans-serif
+  margin-right: 1rem 
+  transition: background-color 0.3s ease, border 0.3s ease
+  box-sizing: border-box 
+  border: 2px solid white 
+
+  &:hover
+    background-color: #3b82f6
+
+.icono
+  height: 50% 
+  width: auto 
+
+.figura
+  margin-left: auto 
+
+.imagenEvento
+  width: auto
+  height: 5rem
+  margin: 10px
+  z-index: 10
+
+.logo
+  z-index: 10
+@media (max-width: 940px) and (orientation: portrait)  /* Móviles en orientación vertical */
+  .contenedor
+    position: absolute /* Cambia a absoluto para mantenerlo dentro del flujo */
+    bottom: 0 /* Posiciónalo al fondo del scroll */
+    left: 0
+    width: 100% /* Asegura que el contenedor cubra todo el ancho */
+    background-color: rgba(0, 0, 0, 0.85) /* Fondo ligeramente más opaco */
+    padding: 0.5rem 1rem
+    z-index: 10
+
+  html, body 
+    position: relative
+    margin: 0 /* Elimina márgenes no deseados */
+
+  .botonUbicacion, .botonChat
+    height: 35px
+    width: 35px
+    font-size: 0.7rem
+
+  .icono
+    height: 35%
+
+  .figura
+    margin-right: 0
+  
+  .imagenEvento
+    height: 1.5rem
+@media (min-width: 1000px) and (max-width: 1800px)  /* Pantallas de portátiles */
+  .contenedor
+    transform-origin: bottom left
+    padding: 0.3rem
+
+  .botonUbicacion, .botonChat
+    height: 50px
+    width: 50px
+    font-size: 0.7rem
+    margin-right: 20px
+
+  .icono
+    height: 35%
+
+  .figura
+    margin-right: 0
+  
+  .imagenEvento
+    height: 3rem
+@media (min-width: 2560px)  /* Pantallas 4K o mayores */
+  .contenedor
+    transform-origin: bottom left
+    padding: 3rem
+
+  .botonUbicacion, .botonChat
+    height: 200px
+    width: 200px
+    font-size: 0.7rem
+    margin-right: 50px
+  .icono
+    height: 35%
+  .imagenEvento
+    height: 9rem

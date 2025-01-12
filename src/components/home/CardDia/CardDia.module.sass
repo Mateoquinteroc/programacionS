@@ -52,14 +52,19 @@
 
 @media (max-width: 940px) and (orientation: portrait)  /* Móviles en orientación vertical */
   .dayContainer
-    width: 100% // Ocupa el 100% del ancho en dispositivos móviles
+    width: 100%
     gap: 1rem
     margin: 0
+  .container
+    padding-bottom: 20%
 
 @media (min-width: 1000px) and (max-width: 1800px)  /* Pantallas de portátiles */
     .eventsContainer
       height: 200px
       max-height: 250px
+    .container
+      padding-bottom: 10%
+
 @media (min-width: 2560px)  /* Pantallas 4K o mayores */
   .container 
     margin: 0 auto 0 auto
