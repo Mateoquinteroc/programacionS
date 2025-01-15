@@ -1,41 +1,26 @@
 // src/db/queries.ts
-import { db } from './index';
-import { days, events } from './schema/events';
 
-// Define manualmente los tipos para las tablas
-type Day = {
-  id: number;        // ID único del día
-  name: string;      // Nombre del día ("Lunes", "Martes", etc.)
-};
-
-type Event = {
-  id: number;             // ID único del evento
-  type: string;           // Tipo de evento ("Exposición", "Concierto", etc.)
-  date: string;           // Fecha del evento ("Lunes 9", "Martes 10", etc.)
-  month: string;          // Mes del evento ("diciembre")
-  hour: string;           // Hora del evento ("8:00 a.m. a 8:00 p.m.")
-  title: string;          // Título del evento
-  place: string;          // Lugar del evento
-  detail: string | null;  // Detalles del evento (puede ser nulo)
-  color: string | null;   // Color del evento (puede ser nulo)
-  image: string | null;   // Imagen del evento (puede ser nulo)
-  description: string | null; // Descripción del evento (puede ser nulo)
-  dayId: number;          // ID del día relacionado
-};
+import { asc } from "drizzle-orm";
+import { db } from "./index";
+import { events, InsertEvent } from "./schema";
 
 // Función para obtener eventos y organizarlos por día
-export async function getEventsByDay() {
-  // Seleccionar datos de la tabla "days"
-  const daysData: Day[] = await db.select().from(days);
-
+export async function getEvents(from: Date, to: Date) {
   // Seleccionar datos de la tabla "events"
-  const eventsData: Event[] = await db.select().from(events);
-
-  // Transformar los datos en un formato similar al JSON original
-  const result = daysData.reduce((acc, day) => {
-    acc[day.name] = eventsData.filter(event => event.dayId === day.id);
-    return acc;
-  }, {} as Record<string, Event[]>);
-
-  return result;
+  return db.query.events.findMany({
+    where: (model, { gte, lte, and }) =>
+      and(gte(model.dateFrom, from), lte(model.dateTo, to)),
+    orderBy:[asc(events.dateFrom)]
+  });
 }
+
+
+// Crear evento
+export async function createEvent(newEvent: InsertEvent) {
+  return db.insert(events).values(newEvent).returning();
+}
+
+// Editar evento
+
+
+// Eliminar evento

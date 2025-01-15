@@ -1,25 +1,9 @@
 import styles from './PrincipalCard.module.sass';
-import React, { useContext } from "react";
-import { CardSelectContext } from "app/components/home/Context/Context";
+import React from "react";
+import { es } from 'date-fns/locale'
+import { format } from 'date-fns'
 
-export const PrincipalCard = () => {
-  const Context = useContext(CardSelectContext);
-
-  // Función para extraer el número de la fecha
-  const extractNumber = (date: string | undefined): string => {
-    if (!date) return ""; 
-    const match = date.match(/\d+/); 
-    return match ? match[0] : ""; 
-  };
-
-  // Extraer el número de la primera y última fecha
-  const firstEventDate = extractNumber(Context?.firstEvent?.date);
-  const lastEventDate = extractNumber(Context?.lastEvent?.date);
-
-  // Función para obtener el año actual
-  const getCurrentYear = (): number => {
-    return new Date().getFullYear(); 
-  };
+export const PrincipalCard = ({from, to}:{from:Date;to:Date}) => {
 
   return (
     <div className={styles.container}>
@@ -31,12 +15,11 @@ export const PrincipalCard = () => {
       <p className={styles.description}>
         Conoce la programación <br /> que tenemos para ti
       </p>
-
       <div className={styles.dateContainer}>
         {/* Mostrar las fechas utilizando los valores del contexto */}
-        <p className={styles.dateLarge}>{`del ${firstEventDate} al ${lastEventDate}`}</p>
-        <p className={styles.dateSmall}>{`de ${Context?.lastEvent?.month || "mes no disponible"}`}</p>
-        <p className={styles.year}>{getCurrentYear()}</p>
+        <p className={styles.dateLarge}>{`del ${from.getDate()} al ${to.getDate()}`}</p>
+        <p className={styles.dateSmall}>{`de ${format(from,'LLLL',{locale:es})}`}</p>
+        <p className={styles.year}>{from.getFullYear()}</p>
       </div>
     </div>
   );

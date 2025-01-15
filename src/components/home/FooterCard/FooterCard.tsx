@@ -1,15 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { CardSelectContext } from "../Context/Context";
-import { ChatBubbleLeftRightIcon, MapPinIcon } from '@heroicons/react/24/solid';
 import styles from './FooterCard.module.sass';
 
 export const FooterCard = () => {
-  const Context = useContext(CardSelectContext);
 
   return (
     <div className={styles.contenedor}>
-      <button
+      {/* <button
         className={styles.botonUbicacion}
         onClick={() => {
           Context?.openCardBaseDetails();
@@ -24,7 +21,7 @@ export const FooterCard = () => {
         }}
       >
         <ChatBubbleLeftRightIcon className={styles.icono} />
-      </button>
+      </button> */}
       <figure className={styles.figura}>
         <Image
           className={styles.imagenEvento}
