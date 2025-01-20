@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "./CardCompose.module.sass";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { format, set, parseISO } from "date-fns";
-import { UploadButton } from "../../../utils/uploadthing";
+import { UploadDropzone } from "../../../utils/uploadthing";
 import Image from "next/image";
 import { SelectEvent } from "app/db/schema";
 import { saveEvent } from "../EventsContainer/eventUtilis";
@@ -99,121 +99,120 @@ export const CardCompose = ({
 
   return (
     <div className={styles.cardComposeContainer}>
-      <aside
-        className={styles.cardComposeContainerForm}
-        style={{ backgroundColor: colorByType[category] }}
-      >
-        <XMarkIcon className={styles.closeIcon} onClick={onClose} />
+        <aside
+          className={styles.cardComposeContainerForm}
+          style={{ backgroundColor: colorByType[category] }}
+        >
+          <XMarkIcon className={styles.closeIcon} onClick={onClose} />
 
-        <div className={styles.content}>
-          <h2 className={styles.title}>
-            {eventToEdit ? "Editar Evento" : "Crear Evento"}
-          </h2>
-
-          <form className={styles.form} onSubmit={handleSave}>
-            {imageUrl && (
-              <div className={styles.column1}>
-                <Image
-                  className="inputimage"
-                  src={imageUrl}
-                  alt="Imagen de evento"
-                  width={200}
-                  height={200}
-                />
-              </div>
+          {/* Columna 1: Imagen */}
+          <div className={styles.column1}>
+            <h1>Imagen</h1>
+            {imageUrl ? (
+              <Image
+                className="inputimage"
+                src={imageUrl}
+                alt="Imagen de evento"
+                width={300}
+                height={300}
+              />
+            ) : (
+              <UploadDropzone
+                className={styles.uploadButton}
+                endpoint="imageUploader"
+                onClientUploadComplete={(res) => setImageUrl(res[0].url)}
+                onUploadError={(error: Error) =>
+                  console.error(`Error al subir la imagen: ${error.message}`)
+                }
+              />
             )}
-            <UploadButton
-              className={styles.uploadButton}
-              endpoint="imageUploader"
-              onClientUploadComplete={(res) => setImageUrl(res[0].url)}
-              onUploadError={(error: Error) =>
-                console.error(`Error al subir la imagen: ${error.message}`)
-              }
+          </div>
+
+          {/* Columna 2: Inputs */}
+          <div className={styles.column2}>
+            <h1>Fecha del evento</h1>
+            <input
+              type="date"
+              value={eventDate}
+              onChange={(e) => setEventDate(e.target.value)}
+              className={styles.input}
+              required
             />
-            <div className={styles.column2}>
-              {/* Fecha */}
-              <input
-                type="date"
-                value={eventDate}
-                onChange={(e) => setEventDate(e.target.value)}
-                className={styles.inputdate}
-                required
-              />
-              {/* Hora de inicio */}
-              <input
-                type="time"
-                value={startTime}
-                onChange={(e) => setStartTime(e.target.value)}
-                className={styles.input}
-                required
-              />
-              {/* Hora de fin */}
-              <input
-                type="time"
-                value={endTime}
-                onChange={(e) => setEndTime(e.target.value)}
-                className={styles.input}
-                required
-              />
+            <h1>Hora de inicio</h1>
+            <input
+              type="time"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+              className={styles.input}
+              required
+            />
+            <h1>Hora de fin</h1>
+            <input
+              type="time"
+              value={endTime}
+              onChange={(e) => setEndTime(e.target.value)}
+              className={styles.input}
+              required
+            />
+            <h1>Titulo del evento</h1>
+            <input
+              type="text"
+              placeholder="Título del evento"
+              className={styles.input}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+            <h1>categoria</h1>
+            <select
+              className={styles.select}
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value="exposicion">Exposición</option>
+              <option value="foro">Foro</option>
+              <option value="concierto">Concierto</option>
+              <option value="taller">Taller</option>
+              <option value="congreso">Congreso</option>
+              <option value="jornadasAcademicas">Jornadas Académicas</option>
+              <option value="varios">Varios</option>
+            </select>
+            <h1>Lugar</h1>
+            <select
+              className={styles.input}
+              value={place}
+              onChange={(e) => setPlace(e.target.value)}
+              required
+            >
+              <option value="auditorio">Auditorio</option>
+              <option value="maker">Maker</option>
+              <option value="oculo">Óculo</option>
+              <option value="sala_principal">Sala de exposiciones</option>
+              <option value="sala_alterna">Sala alterna</option>
+              <option value="sala_capacitaciones">Sala de capacitaciones</option>
+              <option value="vestibulo_piso1">Vestíbulo primer piso</option>
+              <option value="vestíbulo_piso2">Vestíbulo segundo piso</option>
+              <option value="vestíbulo_piso3">Vestíbulo tercer piso</option>
+              <option value="vestíbulo_piso4">Vestíbulo cuarto piso</option>
+              <option value="auditorio_aire">Auditorio al aire libre</option>
+            </select>
+          </div>
 
-              <input
-                type="text"
-                placeholder="Título del evento"
-                className={styles.input}
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-
-              <select
-                className={styles.select}
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                required
-              >
-                <option value="exposicion">Exposición</option>
-                <option value="foro">Foro</option>
-                <option value="concierto">Concierto</option>
-                <option value="taller">Taller</option>
-                <option value="congreso">Congreso</option>
-                <option value="jornadasAcademicas">Jornadas Académicas</option>
-                <option value="varios">Varios</option>
-              </select>
-
-              <select
-                className={styles.input}
-                value={place}
-                onChange={(e) => setPlace(e.target.value)}
-                required
-              >
-                <option value="auditorio">Auditorio</option>
-                <option value="maker">Maker</option>
-                <option value="oculo">Óculo</option>
-                <option value="sala_principal">Sala de exposiciones</option>
-                <option value="sala_alterna">Sala alterna</option>
-                <option value="sala_capacitaciones">
-                  Sala de capacitaciones
-                </option>
-                <option value="vestibulo_piso1">Vestíbulo primer piso</option>
-                <option value="vestíbulo_piso2">Vestíbulo segundo piso</option>
-                <option value="vestíbulo_piso3">Vestíbulo tercer piso</option>
-                <option value="vestíbulo_piso4">Vestíbulo cuarto piso</option>
-                <option value="auditorio_aire">Auditorio al aire libre</option>
-              </select>
-            </div>
+          {/* Columna 3: Descripción y Botón */}
+          <div className={styles.column3}>
+            <h1>Descripción</h1>
             <textarea
               placeholder="Descripción del evento"
               className={styles.textarea}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
-
-            <button type="submit" className={styles.button}>
+            <button onClick={handleSave} className={styles.button}>
               {eventToEdit ? "Guardar Cambios" : "Guardar"}
             </button>
-          </form>
-        </div>
-      </aside>
+          </div>
+        </aside>
     </div>
   );
 };

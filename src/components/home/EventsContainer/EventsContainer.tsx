@@ -101,6 +101,7 @@ export const EventsContainer = ({
             if (eventToEdit) {
               onEventUpdated(newEvent); // Notificar actualización
             } else {
+              
               console.log("Nuevo evento creado:", newEvent);
             }
             setIsCardComposeOpen(false);
