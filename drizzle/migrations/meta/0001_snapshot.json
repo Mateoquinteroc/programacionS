@@ -1,0 +1,130 @@
+{
+  "id": "7284abf6-3aac-420f-9a16-6dc6f6129ca7",
+  "prevId": "0a20d85c-af92-438c-b227-4d8bbe883fa7",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.events": {
+      "name": "events",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "type": {
+          "name": "type",
+          "type": "event_type",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dateFrom": {
+          "name": "dateFrom",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "dateTo": {
+          "name": "dateTo",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "location": {
+          "name": "location",
+          "type": "event_location",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "detail": {
+          "name": "detail",
+          "type": "event_detail",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'abierto'"
+        },
+        "imageUrl": {
+          "name": "imageUrl",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "description": {
+          "name": "description",
+          "type": "varchar(500)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {
+    "public.event_detail": {
+      "name": "event_detail",
+      "schema": "public",
+      "values": [
+        "abierto",
+        "cerrado"
+      ]
+    },
+    "public.event_location": {
+      "name": "event_location",
+      "schema": "public",
+      "values": [
+        "sala_principal",
+        "sala_alterna",
+        "maker",
+        "auditorio",
+        "oculo",
+        "cafe_cultural",
+        "sala_capacitaciones",
+        "vestibulo_piso1",
+        "vestibulo_piso2",
+        "vestibulo_piso3",
+        "vestibulo_piso4",
+        "auditorio_aire"
+      ]
+    },
+    "public.event_type": {
+      "name": "event_type",
+      "schema": "public",
+      "values": [
+        "exposicion",
+        "foro",
+        "concierto",
+        "taller",
+        "congreso",
+        "jornadasAcademicas",
+        "varios"
+      ]
+    }
+  },
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

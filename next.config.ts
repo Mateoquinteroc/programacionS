@@ -14,6 +14,12 @@ const nextConfig: NextConfig = {
         hostname: "i.postimg.cc",
         pathname: "/**", // Permitir cualquier ruta bajo este dominio
       },
+      {
+        protocol: "https",
+        hostname:  "utfs.io",
+        pathname: "/**", // Permitir cualquier ruta bajo este dominio
+      },
+     
     ],
   },
 };

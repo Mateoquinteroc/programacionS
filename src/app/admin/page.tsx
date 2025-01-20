@@ -1,9 +1,8 @@
 "use client";
 
 import { Fondo } from "app/components/home";
-import { AuthButton } from "app/components/home/pruebas/botonlogin";
-import { useSession, signIn } from "next-auth/react";
-import { useRouter } from "next/navigation"; // Cambia a `next/router` si usas la carpeta `pages`
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function AdminPage() {
   const { data: session, status } = useSession();
@@ -17,8 +16,16 @@ export default function AdminPage() {
   // Si no hay sesión, muestra el panel de inicio de sesión
   if (!session) {
     return (
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh" }}>
-        <Fondo/>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+        }}
+      >
+        <Fondo />
         <h1>Iniciar Sesión</h1>
         <button
           onClick={() => signIn("google")} // Cambia "google" al proveedor que estés usando
@@ -40,12 +47,36 @@ export default function AdminPage() {
 
   // Si el usuario está autenticado, muestra el panel de administración
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh"}}>
-      <Fondo/>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
+      <Fondo />
       <h1>Panel de Administración</h1>
-      <p>Bienvenido, {session.user?.name} ({session.user?.email})</p>
-      <div style={{ display: "flex", flexDirection: "row", gap:"10px"}}>
-        <AuthButton />
+      <p>
+        Bienvenido, {session.user?.name} ({session.user?.email})
+      </p>
+      <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
+        <button
+          onClick={() => signOut()}
+          style={{
+            padding: "10px 20px",
+            fontSize: "16px",
+            marginTop: "20px",
+            border: "none",
+            borderRadius: "5px",
+            backgroundColor: "red",
+            color: "white",
+            cursor: "pointer",
+          }}
+        >
+          Sign out
+        </button>
         <button
           onClick={() => router.push("/admin/PanelAdmin")}
           style={{
