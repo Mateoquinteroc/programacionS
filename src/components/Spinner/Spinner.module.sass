@@ -1,0 +1,23 @@
+.spinnerContainer
+  display: flex
+  justify-content: center
+  align-items: center
+
+.spinner
+  width: 24px
+  height: 24px
+  border: 3px solid rgba(255, 255, 255, 0.3)
+  border-top-color: #ffffff
+  border-radius: 50%
+  animation: spin 0.8s linear infinite
+
+@keyframes spin
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+@media (max-width: 768px) // Ajustes en pantallas pequeñas
+  .spinner
+    width: 20px
+    height: 20px

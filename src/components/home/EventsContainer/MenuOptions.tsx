@@ -7,11 +7,11 @@ import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";
 export const MenuOptions = ({
   onEdit,
   onDelete,
-  onCopy,
+  onCopyToNextDay,
 }: {
   onEdit: () => void;
   onDelete: () => void;
-  onCopy: () => void;
+  onCopyToNextDay?: () => void;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -57,8 +57,8 @@ export const MenuOptions = ({
           <button
             className={styles.menuOption}
             onClick={() => {
-              setIsOpen(false); // Cerrar menú
-              onEdit(); // Ejecutar la acción de editar
+              setIsOpen(false); 
+              onEdit(); 
             }}
           >
             Editar
@@ -66,21 +66,23 @@ export const MenuOptions = ({
           <button
             className={styles.menuOption}
             onClick={() => {
-              setIsOpen(false); // Cerrar menú
-              onDelete(); // Ejecutar la acción de eliminar
+              setIsOpen(false); 
+              onDelete(); 
             }}
           >
             Eliminar
           </button>
-          <button
-            className={styles.menuOption}
-            onClick={() => {
-              setIsOpen(false); // Cerrar menú
-              onCopy(); // Ejecutar la acción de copiar
-            }}
-          >
-            Copiar al día siguiente
-          </button>
+          {onCopyToNextDay && (
+            <button
+              className={styles.menuOption}
+              onClick={() => {
+                setIsOpen(false); 
+                onCopyToNextDay(); 
+              }}
+            >
+              Copiar a otro día
+            </button>
+          )}
         </div>
       )}
     </div>

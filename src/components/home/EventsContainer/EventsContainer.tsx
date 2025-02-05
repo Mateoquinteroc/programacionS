@@ -5,7 +5,7 @@ import { SelectEvent } from "app/db/schema";
 import { CardCompose } from "../CardCompose/CardCompose";
 import { colorByType, locationTranslations } from "../consts";
 import styles from "../CardDia/CardDia.module.sass";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 import { es } from "date-fns/locale";
 import { MenuOptions } from "./MenuOptions";
 import { deleteEventById } from "./eventUtilis";
@@ -15,29 +15,29 @@ export const EventsContainer = ({
   onSelect,
   isAdminMode,
   day,
-  onEventUpdated, // Nueva prop para manejar actualizaciones de eventos
+  onEventUpdated,
 }: {
   eventos: SelectEvent[];
   onSelect: (event: SelectEvent | null) => void;
   isAdminMode: boolean;
   day: Date;
-  onEventUpdated: (updatedEvent: SelectEvent | null) => void; // Prop para manejar eventos actualizados
+  onEventUpdated: (updatedEvent: SelectEvent | null) => void;
 }) => {
   const [isCardComposeOpen, setIsCardComposeOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [eventToEdit, setEventToEdit] = useState<SelectEvent | null>(null); // Nuevo estado para el evento a editar
+  const [eventToEdit, setEventToEdit] = useState<SelectEvent | null>(null);
 
   // Abrir CardCompose para creación
   const openCardCompose = () => {
-    setEventToEdit(null); // Limpiar el evento a editar
+    setEventToEdit(null);
     setSelectedDate(day);
     setIsCardComposeOpen(true);
   };
 
   // Abrir CardCompose para edición
   const handleEdit = (event: SelectEvent) => {
-    setEventToEdit(event); // Establecer el evento a editar
-    setSelectedDate(new Date(event.dateFrom)); // Usar la fecha del evento
+    setEventToEdit(event);
+    setSelectedDate(new Date(event.dateFrom));
     setIsCardComposeOpen(true);
   };
 
@@ -48,9 +48,32 @@ export const EventsContainer = ({
     if (isDeleted) {
       const deletedEvent = eventos.find((event) => event.id === id);
       if (deletedEvent) {
-        window.location.reload(); // Actualizar la página
+        window.location.reload();
       }
     }
+  };
+
+  // Copiar evento al día siguiente
+  const copyEventToNextDay = (eventToEdit: SelectEvent) => {
+    if (!eventToEdit) return;
+
+    // Incrementamos la fecha en 1 día
+    const newDateFrom = addDays(new Date(eventToEdit.dateFrom), 1);
+    const newDateTo = addDays(new Date(eventToEdit.dateTo), 1);
+
+    // Creamos un nuevo evento con la misma info, pero con la nueva fecha
+    const { id, ...eventWithoutId } = eventToEdit; // ✅ Eliminamos `id` del objeto
+
+    const newEvent: SelectEvent = {
+      ...eventWithoutId,
+      dateFrom: newDateFrom.toISOString(),
+      dateTo: newDateTo.toISOString(),
+    };
+    console.log("✅ Evento copiado correctamente, sin ID:", newEvent);
+    
+    setEventToEdit(newEvent);
+    setSelectedDate(newDateFrom);
+    setIsCardComposeOpen(true);
   };
 
   return (
@@ -72,9 +95,9 @@ export const EventsContainer = ({
         >
           {isAdminMode && (
             <MenuOptions
-              onEdit={() => handleEdit(evento)} // Llamar a la función de edición
+              onEdit={() => handleEdit(evento)}
               onDelete={() => handleDelete(evento.id)}
-              onCopy={() => console.log("Copiar evento")}
+              onCopyToNextDay={() => copyEventToNextDay(evento)}
             />
           )}
           <p className={styles.eventTitle}>{evento.title}</p>
@@ -99,14 +122,13 @@ export const EventsContainer = ({
           onClose={() => setIsCardComposeOpen(false)}
           onEventCreated={(newEvent) => {
             if (eventToEdit) {
-              onEventUpdated(newEvent); // Notificar actualización
+              onEventUpdated(newEvent);
             } else {
-              
               console.log("Nuevo evento creado:", newEvent);
             }
             setIsCardComposeOpen(false);
           }}
-          eventToEdit={eventToEdit || null} // Pasar el evento a editar, si existe
+          eventToEdit={eventToEdit || null}
         />
       )}
     </div>

@@ -3,7 +3,7 @@ export async function saveEvent(
   eventData: Record<string, any>,
   isEdit: boolean = false
 ): Promise<any> {
-  const url = isEdit ? `/api/events?id=${eventData.id}` : "/api/events";
+  const url = isEdit && eventData.id ? `/api/events?id=${eventData.id}` : "/api/events";
   const method = isEdit ? "PUT" : "POST";
 
   try {
