@@ -8,7 +8,6 @@ import PanelDias from "./PanelDias";
 import { useEffect, useState } from "react";
 import { SelectEvent } from "app/db/schema";
 import { useSession, signIn } from "next-auth/react";
-import { AuthButton } from "../home/Loguin/botonlogin";
 
 const now = new Date();
 
@@ -33,7 +32,7 @@ export default function PanelAdmin() {
           setEvents(data);
         });
     }
-  }, [from, session]);
+  }, [from,to,session]);
 
   // Estado de carga mientras se valida la sesión
   if (status === "loading") {

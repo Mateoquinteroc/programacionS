@@ -62,7 +62,7 @@ export const EventsContainer = ({
     const newDateTo = addDays(new Date(eventToEdit.dateTo), 1);
 
     // Creamos un nuevo evento con la misma info, pero con la nueva fecha
-    const { id, ...eventWithoutId } = eventToEdit; // ✅ Eliminamos `id` del objeto
+    const { ...eventWithoutId } = eventToEdit; // ✅ Eliminamos `id` del objeto
 
     const newEvent: SelectEvent = {
       ...eventWithoutId,

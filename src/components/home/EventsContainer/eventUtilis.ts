@@ -1,8 +1,10 @@
+import { SelectEvent } from "app/db/schema";
+
 // Función para guardar un evento (crear o editar)
 export async function saveEvent(
-  eventData: Record<string, any>,
+  eventData: Partial<SelectEvent>,
   isEdit: boolean = false
-): Promise<any> {
+): Promise<SelectEvent> {
   const url = isEdit && eventData.id ? `/api/events?id=${eventData.id}` : "/api/events";
   const method = isEdit ? "PUT" : "POST";
 

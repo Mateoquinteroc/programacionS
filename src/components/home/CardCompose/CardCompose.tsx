@@ -46,7 +46,6 @@ export const CardCompose = ({
   // Cargar los datos en caso de edición o si es un evento clonado
   useEffect(() => {
     if (eventToEdit) {
-      const { id, ...eventWithoutId } = eventToEdit;
 
       setCategory(eventToEdit.type || "concierto");
       setImageUrl(eventToEdit.imageUrl || "");

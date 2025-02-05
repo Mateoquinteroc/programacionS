@@ -5,7 +5,6 @@ import { FooterCard } from "app/components/home/FooterCard/FooterCard"
 import { getEvents } from "app/db/queries";
 import { endOfWeek, startOfWeek } from "date-fns";
 import { Home } from "app/components/home/Home";
-import { PanelDias } from "../components/admin/PanelDiasServer";
 
 
 const now = new Date()
