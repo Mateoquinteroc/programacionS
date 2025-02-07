@@ -4,42 +4,48 @@ import { events, InsertEvent } from "./schema";
 
 // Función para obtener eventos y organizarlos por día
 export async function getEvents(from: Date, to: Date) {
-  if (!db) {
-    console.error("❌ ERROR: Base de datos no inicializada");
+  try {
+    return await db.query.events.findMany({
+      where: (model, { gte, lte, and }) =>
+        and(gte(model.dateFrom, from), lte(model.dateTo, to)),
+      orderBy: [asc(events.dateFrom)],
+    });
+  } catch (error) {
+    console.error("❌ Error al obtener eventos:", error);
     return [];
   }
-
-  return db.query.events.findMany({
-    where: (model, { gte, lte, and }) =>
-      and(gte(model.dateFrom, from), lte(model.dateTo, to)),
-    orderBy: [asc(events.dateFrom)],
-  });
 }
 
 // Crear evento
 export async function createEvent(newEvent: InsertEvent) {
-  if (!db) {
-    throw new Error("Base de datos no inicializada");
+  try {
+    return await db.insert(events).values(newEvent).returning();
+  } catch (error) {
+    console.error("❌ Error al crear el evento:", error);
+    return [];
   }
-  return db.insert(events).values(newEvent).returning();
 }
 
 // Editar evento
 export async function updateEvent(eventId: number, newEvent: InsertEvent) {
-  if (!db) {
-    throw new Error("Base de datos no inicializada");
+  try {
+    return await db
+      .update(events)
+      .set(newEvent)
+      .where(eq(events.id, eventId))
+      .returning();
+  } catch (error) {
+    console.error("❌ Error al actualizar el evento:", error);
+    return [];
   }
-  return db
-    .update(events)
-    .set(newEvent)
-    .where(eq(events.id, eventId))
-    .returning();
 }
 
 // Eliminar evento
 export async function deleteEvent(eventId: number) {
-  if (!db) {
-    throw new Error("Base de datos no inicializada");
+  try {
+    return await db.delete(events).where(eq(events.id, eventId));
+  } catch (error) {
+    console.error("❌ Error al eliminar el evento:", error);
+    return [];
   }
-  return db.delete(events).where(eq(events.id, eventId));
 }
