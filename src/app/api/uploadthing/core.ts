@@ -3,7 +3,8 @@ import { UploadThingError } from "uploadthing/server";
  
 const f = createUploadthing();
  
-const auth = () => {
+const auth = (req: Request) => {
+  void req;
   return { id: "fakeId" }; // Fake auth function
 }
  

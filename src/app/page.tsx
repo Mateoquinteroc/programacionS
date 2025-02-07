@@ -17,7 +17,7 @@ export default async function HomePage() {
       <main>
         <Fondo />
         <PrincipalCard from={from} to={to} />
-        <Home events={events}/>
+        <Home events={events} isAdminMode={false} from={from} to={to} />
         <FooterCard />
         
       </main>

@@ -20,11 +20,12 @@ export default function PanelAdmin() {
 
   useEffect(() => {
     if (session) {
+      const toDate = endOfWeek(from, { weekStartsOn: 1 });
       // Solo cargar eventos si el usuario está autenticado
       fetch(
         `/api/events?${new URLSearchParams({
           from: from.toISOString(),
-          to: to.toISOString(),
+          to: toDate.toISOString(),
         }).toString()}`
       )
         .then((response) => response.json())
@@ -32,7 +33,7 @@ export default function PanelAdmin() {
           setEvents(data);
         });
     }
-  }, [from,to,session]);
+  }, [from,session]);
 
   // Estado de carga mientras se valida la sesión
   if (status === "loading") {
