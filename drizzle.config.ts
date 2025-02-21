@@ -1,19 +1,14 @@
-import type { Config } from 'drizzle-kit';
+import { config } from 'dotenv';
+import { defineConfig } from 'drizzle-kit';
 
-export default {
+config({ path: '.env.local' });
+
+export default defineConfig({
   schema: './src/db/schema.ts',
-  out: './drizzle/migrations',
+  out: './migrations',
   dialect: 'postgresql',
   dbCredentials: {
-    host: 'db.nmnmnxhwyhvwzaabmtjy.supabase.co',
-    port: 5432,
-    user: 'postgres',
-    password: process.env.PASSWORD,
-    database: 'postgres',
-    ssl: {
-        rejectUnauthorized: false,
-      },
-    // O "require", "allow", "prefer", etc. (depende de tu configuración)
+    url: process.env.POSTGRES_URL!,
   },
-} satisfies Config;
+});
 
