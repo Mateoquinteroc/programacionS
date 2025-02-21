@@ -1,14 +1,15 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import * as schema from "./schema";
+import { config } from 'dotenv';
+
+config();
 
 const pool = new Pool({
-  host: "db.nmnmnxhwyhvwzaabmtjy.supabase.co",
-  port: 6543,
-  user: "postgres",
-  password: process.env.PASSWORD,
-  database: "postgres",
-  ssl: { rejectUnauthorized: false },
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 export const db = drizzle(pool, { schema });
