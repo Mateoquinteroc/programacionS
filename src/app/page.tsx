@@ -6,6 +6,7 @@ import { getEvents } from "app/db/queries";
 import { endOfWeek, startOfWeek } from "date-fns";
 import { Home } from "app/components/home/Home";
 
+export const dynamic = 'force-dynamic';
 
 const now = new Date()
 const from = startOfWeek(now,{weekStartsOn: 1})
