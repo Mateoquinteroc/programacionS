@@ -1,9 +1,13 @@
 import styles from './PrincipalCard.module.sass';
 import React from "react";
-import { es } from 'date-fns/locale'
-import { format } from 'date-fns'
+import { es } from 'date-fns/locale';
+import { format } from 'date-fns';
 
 export const PrincipalCard = ({from, to}:{from:Date;to:Date}) => {
+
+  const areDifferentMonths = (from: Date, to: Date): boolean => {
+    return from.getMonth() !== to.getMonth() || from.getFullYear() !== to.getFullYear();
+  };
 
   return (
     <div className={styles.container}>
@@ -16,9 +20,11 @@ export const PrincipalCard = ({from, to}:{from:Date;to:Date}) => {
         Conoce la programación <br /> que tenemos para ti
       </p>
       <div className={styles.dateContainer}>
-        {/* Mostrar las fechas utilizando los valores del contexto */}
-        <p className={styles.dateLarge}>{`del ${from.getDate()} al ${to.getDate()}`}</p>
-        <p className={styles.dateSmall}>{`de ${format(from,'LLLL',{locale:es})}`}</p>
+        {areDifferentMonths(from, to) ? (
+          <p className={styles.dateLarge}>{`del ${from.getDate()} de ${format(from, 'LLLL', { locale: es })} al ${to.getDate()} de ${format(to, 'LLLL', { locale: es })}`}</p>
+        ) : (
+          <p className={styles.dateLarge}>{`del ${from.getDate()} al ${to.getDate()} de ${format(from, 'LLLL', { locale: es })}`}</p>
+        )}
         <p className={styles.year}>{from.getFullYear()}</p>
       </div>
     </div>

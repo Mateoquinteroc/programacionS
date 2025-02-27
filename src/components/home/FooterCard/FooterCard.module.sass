@@ -1,109 +1,71 @@
-/* Estilos en Sass.module.sass */
+// Contenedor principal del footer
 .contenedor
   position: fixed
   bottom: 0
+  left: 0
   width: 100%
+  height: 60px // Altura fija del footer para evitar que sea muy grande
   display: flex
-  justify-content: flex-start 
+  justify-content: flex-end // Imagen alineada a la derecha
   align-items: center
   padding: 0 1rem
   box-sizing: border-box
-  background-color: rgba(0, 0, 0, 0.75)
+  background-color: rgba(0, 0, 0, 0.85)
   z-index: 10
+  border-top: 1px solid rgba(255, 255, 255, 0.1)
 
-.botonUbicacion, .botonChat
-  position: relative
-  display: flex
-  justify-content: center 
-  align-items: center 
-  height: 70px
-  width: 70px
-  background-color: #1d4ed8
-  color: white
-  font-size: 1rem
-  font-weight: bold
-  border-radius: 50%
-  font-family: 'Open Sans', sans-serif
-  margin-right: 1rem 
-  transition: background-color 0.3s ease, border 0.3s ease
-  box-sizing: border-box 
-  border: 2px solid white 
+  // Sombra suave para diferenciar el footer del contenido
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1)
 
-  &:hover
-    background-color: #3b82f6
+  // Transición suave al aparecer o cambiar el tamaño
+  transition: all 0.3s ease-in-out
 
-.icono
-  height: 50% 
-  width: auto 
-
+// Estilo de la figura que contiene la imagen
 .figura
-  margin-left: auto 
+  margin: 0
+  padding: 0
+  display: flex
+  justify-content: flex-end
+  align-items: center
+  height: 100% // Asegura que la imagen se centre verticalmente
 
+// Estilo de la imagen del evento en el footer
 .imagenEvento
-  width: auto
-  height: 5rem
-  margin: 10px
-  z-index: 10
+  height: 50px
+  max-width: 30% // Evitar que ocupe demasiado espacio en la pantalla
+  object-fit: contain
+  margin-left: auto
+  margin-right: 10px
 
-.logo
-  z-index: 10
-@media (max-width: 940px) and (orientation: portrait)  /* Móviles en orientación vertical */
+// Estilos Responsivos
+
+// Dispositivos móviles (pantallas pequeñas)
+@media (max-width: 940px) 
   .contenedor
-    position: absolute /* Cambia a absoluto para mantenerlo dentro del flujo */
-    bottom: 0 /* Posiciónalo al fondo del scroll */
-    left: 0
-    width: 100% /* Asegura que el contenedor cubra todo el ancho */
-    background-color: rgba(0, 0, 0, 0.85) /* Fondo ligeramente más opaco */
-    padding: 0.5rem 1rem
-    z-index: 10
-
-  // :global(html, body)  // 🔥 Usa `:global()` para aplicar estilos globales
-  //   position: relative
-  //   margin: 0
-
-  .botonUbicacion, .botonChat
-    height: 35px
-    width: 35px
-    font-size: 0.7rem
-
-  .icono
-    height: 35%
-
-  .figura
-    margin-right: 0
-  
-  .imagenEvento
-    height: 1.5rem
-@media (min-width: 1000px) and (max-width: 1800px)  /* Pantallas de portátiles */
-  .contenedor
-    transform-origin: bottom left
     padding: 0.3rem
-
-  .botonUbicacion, .botonChat
+    background-color: rgba(0, 0, 0, 0.9)
     height: 50px
-    width: 50px
-    font-size: 0.7rem
-    margin-right: 20px
 
-  .icono
-    height: 35%
-
-  .figura
-    margin-right: 0
-  
   .imagenEvento
-    height: 3rem
-@media (min-width: 2560px)  /* Pantallas 4K o mayores */
+    height: 40px
+    max-width: 50%
+
+// Pantallas medianas (laptops y tablets)
+@media (min-width: 1000px) and (max-width: 1800px)
   .contenedor
-    transform-origin: bottom left
-    padding: 3rem
+    padding: 0.5rem
+    height: 10%
 
-  .botonUbicacion, .botonChat
-    height: 200px
-    width: 200px
-    font-size: 0.7rem
-    margin-right: 50px
-  .icono
-    height: 35%
   .imagenEvento
-    height: 9rem
+    height: 50px
+    max-width: 40%
+
+// Pantallas grandes (monitores y televisores)
+@media (min-width: 2560px) 
+  .contenedor
+    padding: 2rem
+    height: 10%
+
+  .imagenEvento
+    height: 600px
+    width: 100%
