@@ -97,6 +97,13 @@ export const CardDia = ({
             day={date}
             onEventUpdated={handleEventUpdate}
           />
+          <div className={styles.eventStripeFixed}>
+          <div className={styles.colorBlockYellow}></div>
+          <div className={styles.colorBlockOrange}></div>
+          <div className={styles.colorBlockPink}></div>
+          <div className={styles.colorBlockRed}></div>
+          <div className={styles.colorBlockWine}></div>
+          </div>
         </div>
       ))}
     </div>

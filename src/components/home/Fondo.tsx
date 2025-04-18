@@ -5,7 +5,7 @@ export const Fondo = () => {
   return (
     <div className={styles.fondoContainer}>
       <Image 
-        src="/images/fondo.jpg"
+        src="/images/Fondodiseno.png"
         fill // Hace que la imagen ocupe todo el contenedor
         style={{ objectFit: 'cover' }} // Ajusta cómo se muestra la imagen
         alt="fondo"
