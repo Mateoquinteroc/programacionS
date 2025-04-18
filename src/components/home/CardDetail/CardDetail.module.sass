@@ -51,10 +51,11 @@
   margin: 2.5rem auto
   border-radius: 1.5rem
   transition: transform 0.3s ease-in-out
-  background-color: inherit
+  background-color: whitw
 
 .eventImageContainer
-  grid-column: span 1
+  grid-column: 1
+  grid-row: 1 / span 6
   display: flex
   justify-content: center
   align-items: center
@@ -63,54 +64,109 @@
   margin: 0.5rem 
   border-radius: 1rem 
 
+
 .eventImage
   max-width: 100% 
   max-height: 100% 
   object-fit: contain 
   object-position: center 
   border-radius: 1rem
-  
+
 
 .eventDate, .eventTime, .eventTitle, .eventLocation, .eventDetails
   margin-left: 2rem
   font-family: "Open Sans", sans-serif
-  color: white
 
 .eventDate
   font-size: 3rem
-  font-weight: bold
-.eventDatePanel
-  font-size: 2rem
-  grid-row-start: 1
-  grid-column-start: 2
-
-.eventTimePanel
-  font-size: 2rem
-  grid-column-start: 2 
-  grid-row-start: 1
-  position: absolute
-  top: 8rem 
-.eventTime
-  font-size: 2rem
-  margin-top: 1rem
-
 .eventTitlePanel
-  font-size: 1.5rem
-  grid-column-start: 2
-  grid-row-start: 1
-  position: absolute
-  top: 15rem
-  width: 40%
+  font-family: "Open Sans", sans-serif
+  font-size: 3rem
+  font-weight: 700
+  margin-bottom: 0.5rem
+  text-align: left
+  grid-column-start: 3 
+  white-space: nowrap
+  
+
 .eventTitle
   font-size: 2rem
   font-weight: bold
   margin-top: 1rem
-  grid-column-start: 2
+  grid-column-start: 3 
+
+.eventDateWrapper
+  display: flex
+  gap: 1rem
+  grid-column-start: 3
+  grid-row: 4
+  font-family: "Open Sans", sans-serif
+  
+
+.eventDatePanel
+  font-weight: bold
+  font-size: 5rem
+  position: relative
+  text-align: left
+
+.eventMonDay
+  font-weight: bold
+  font-size: 2rem
+  position: relative
+  text-align: left
+
+.dayTitle
+  color: #000
+  text-align: right
+  position: relative
+  margin-top: 7%
+  grid-row: 4
+  grid-column: 3
+
+.eventLocationWrapper
+  display: flex
+  flex-direction: column
+  gap: 0.5rem
+  position: absolute
+  bottom: 2rem
+  grid-column-start: 3
+  grid-row: 5
+  font-family: "Open Sans", sans-serif
+  text-align: left
+
+.eventLocationTitle
+  font-size: 1.5rem
+  font-weight: bold
+  color: #000000
+  margin: 0
+  text-align: left
+
+.eventLocationPanel
+  text-align: left
+  grid-column-start:3
+  grid-row: 5
+  font-size: 2rem
+  font-weight: 600
+  color: #000000
+
+.eventTimePanel
+  font-size: 2rem
+  color: black
+  grid-column-start: 3
+  margin-top: 1rem
+  text-align: left
+  grid-row: 6
+
+.eventTime
+  font-size: 2rem
+  margin-top: 0
+  font-weight: 500
+
+
 
 .eventDetailsPanel
   font-size: 1.5rem
   grid-column-start: 2
-  grid-row-end: 3
   position: absolute
   top: 20rem
 .eventDetails
@@ -119,15 +175,7 @@
   grid-column-start: 2
   margin-left: 0
 
-.eventLocationPanel
-  font-size: 2rem
-  grid-column-start: 2
-  bottom: 1rem
-  position: absolute
-.eventLocation
-  font-size: 2rem
-  margin-top: 1rem
-  grid-column-start: 2
+
 
 
 .eventDescriptionTitle
@@ -142,26 +190,22 @@
   font-family: "Open Sans", sans-serif
   margin: 0.75rem 
   margin-top: 1rem
-  grid-column-start: 2
+  grid-column-start: 3
 
 .eventDescriptionPanel
   position: absolute
-  grid-column-start: 2
-  left: 40%
+  grid-column-start: 3
   top: 5rem
   font-size: 1rem
-.eventDescription
-  position: absolute
-  right: 2rem
-  top: 2rem
-  width: 40%
-  height: 50%
-  font-size: 1.25rem
-  color: white
-  font-family: "Open Sans", sans-serif
-  overflow-y: auto
-  padding-right: 1rem
+.eventDescriptionPanel
+  font-size: 1rem
+  line-height: 1.5
+  max-width: 50ch
+  color: #1f2937
+  text-align: left
 
+
+  
 .scrollableEventList
   position: fixed
   bottom: 1rem
