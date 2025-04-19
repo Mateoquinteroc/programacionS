@@ -4,53 +4,40 @@
   bottom: 0
   left: 0
   width: 100%
-  height: 60px // Altura fija del footer para evitar que sea muy grande
+  height: 80px
   display: flex
-  justify-content: flex-end // Imagen alineada a la derecha
+  justify-content: center      // ✅ Cambiado desde flex-end
   align-items: center
   padding: 0 1rem
   box-sizing: border-box
-  background-color: rgba(0, 0, 0, 0.85)
   z-index: 10
-  border-top: 1px solid rgba(255, 255, 255, 0.1)
-
-  // Sombra suave para diferenciar el footer del contenido
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1)
-
-  // Transición suave al aparecer o cambiar el tamaño
   transition: all 0.3s ease-in-out
 
-// Estilo de la figura que contiene la imagen
 .figura
   margin: 0
   padding: 0
   display: flex
-  justify-content: flex-end
+  justify-content: center      // ✅ Alineado horizontalmente centrado
   align-items: center
-  height: 100% // Asegura que la imagen se centre verticalmente
+  height: 100%
 
-// Estilo de la imagen del evento en el footer
 .imagenEvento
   height: 50px
-  max-width: 30% // Evitar que ocupe demasiado espacio en la pantalla
+  max-width: 90%               // ✅ Más ancho disponible sin desbordarse
   object-fit: contain
-  margin-left: auto
-  margin-right: 10px
+  margin: 0 auto
 
-// Estilos Responsivos
-
-// Dispositivos móviles (pantallas pequeñas)
-@media (max-width: 940px) 
+// 📱 Dispositivos móviles
+@media (max-width: 940px)
   .contenedor
     padding: 0.3rem
-    background-color: rgba(0, 0, 0, 0.9)
     height: 50px
 
   .imagenEvento
     height: 40px
-    max-width: 50%
+    max-width: 90%             // ✅ Más flexible en móvil
 
-// Pantallas medianas (laptops y tablets)
+// 💻 Pantallas medianas (laptops)
 @media (min-width: 1000px) and (max-width: 1800px)
   .contenedor
     padding: 0.5rem
@@ -58,14 +45,14 @@
 
   .imagenEvento
     height: 50px
-    max-width: 40%
+    max-width: 50%
 
-// Pantallas grandes (monitores y televisores)
-@media (min-width: 2560px) 
+// 🖥 Pantallas grandes (4K)
+@media (min-width: 2560px)
   .contenedor
     padding: 2rem
     height: 10%
 
   .imagenEvento
-    height: 600px
-    width: 100%
+    height: 200px             // ✅ No muy alto, proporcional
+    max-width: 100%
