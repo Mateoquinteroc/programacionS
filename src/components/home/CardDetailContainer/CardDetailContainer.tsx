@@ -33,6 +33,13 @@ export const CardDetailContainer = ({
             height={500}
           />
         </figure>
+
+        <p className={styles.eventTitlePanel}
+        style={{ color: colorByType[selectedEvent.type] }}>
+          {selectedEvent.title}</p>
+        <p className={styles.eventDescriptionPanel}>
+          {selectedEvent.description}
+        </p>
         <div className={styles.eventDateWrapper}>
           <p className={styles.eventDatePanel}
           style={{ color: colorByType[selectedEvent.type] }}
@@ -50,14 +57,6 @@ export const CardDetailContainer = ({
             </h2>
           </div>
         </div>
-
-        <p className={styles.eventTitlePanel}
-        style={{ color: colorByType[selectedEvent.type] }}>
-          {selectedEvent.title}</p>
-        <p className={styles.eventTitlePanel}>{selectedEvent.title}</p>
-        <p className={styles.eventDescriptionPanel}>
-          {selectedEvent.description}
-        </p>
         <p className={styles.eventLocationPanel}>Lugar : {""}
           {locationTranslations[selectedEvent.location]}
         </p>

@@ -86,7 +86,7 @@ export const EventsContainer = ({
         <div
           key={evento.id}
           className={styles.eventCard}
-          style={{ "--line-color": colorByType[evento.type] } as React.CSSProperties }n
+          style={{ "--line-color": colorByType[evento.type] } as React.CSSProperties }
           onClick={() => {
             if (!isAdminMode) {
               onSelect(evento);

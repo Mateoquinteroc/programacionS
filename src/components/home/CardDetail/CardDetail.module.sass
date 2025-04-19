@@ -5,7 +5,7 @@
   transform: translate(-50%, -50%)
   width: 90vw
   height: 70vh
-  background-color: rgba(248, 250, 252, 0.9) // bg-slate-50/90
+  background-color: rgba(255, 255, 255) // bg-slate-50/90
   border-radius: 1.5rem
   z-index: 10
   overflow: hidden
@@ -112,6 +112,7 @@
 .eventMonDay
   font-weight: bold
   font-size: 2rem
+  margin-top: 1rem
   position: relative
   text-align: left
 
@@ -119,7 +120,6 @@
   color: #000
   text-align: right
   position: relative
-  margin-top: 7%
   grid-row: 4
   grid-column: 3
 
@@ -194,13 +194,13 @@
 
 .eventDescriptionPanel
   position: absolute
-  grid-column-start: 3
+  grid-column: 3 / span 2  // Usa columnas 3 y 4 si están libres
   top: 5rem
   font-size: 1rem
-.eventDescriptionPanel
-  font-size: 1rem
   line-height: 1.5
-  max-width: 50ch
+  width: auto              // Se adapta al contenido
+  max-width: 80ch          // Mayor límite para expandirse en pantallas grandes
+  min-width: 30ch          // Asegura legibilidad mínima
   color: #1f2937
   text-align: left
 
@@ -241,140 +241,197 @@
 
 
 
-@media (min-width: 1000px) and (max-width: 1800px)  /* Pantallas de portátiles */
-  .eventCard 
+@media (min-width: 1200px) and (max-width: 1800px)
+  .eventCard
     width: 120px
     height: 120px
-    overflow: hidden 
+    overflow: hidden
     padding: 10px
+
   .eventType, .eventDate, .eventTime, .eventTitle, .eventLocation
     font-size: 0.7rem
     margin: 0.3rem 0
+
   .eventDatePanel
-    font-size: 1.5rem
+    font-size: 5rem
     font-weight: bold
-    margin-top: 1rem
+
   .eventTimePanel
     font-size: 1.5rem
-    top: 6rem
+    margin-top: 0.5rem
+
   .eventTitlePanel
-    font-size: 1rem
-    top: 9rem
-    width: 30%
+    font-size: 2rem
+    width: 100%
+
   .eventDetailsPanel
     font-size: 1rem
-    top: 14rem
+    margin-top: 1rem
+
   .eventLocationPanel
     font-size: 1rem
+
   .eventDescriptionTitle
-    left: 55%
-@media (min-width: 2560px)  /* Pantallas 4K o mayores */
+    left: 50%
+    font-size: 1rem
+  .eventDescriptionPanel
+    font-size: 0.8rem
+    top: 3rem
+  .eventMonDay
+    margin-top: 1rem
+    font-weight: bold
+    font-size: 1.5rem
+    position: relative
+    text-align: left
+  .dayTitle
+    margin-top: 0
+
+@media (min-width: 2560px)
   .eventCardDetail
     width: 85vw
     height: 70%
-  .eventCard 
+
+  .eventCard
     width: 350px
     height: 350px
-    overflow: hidden 
+    overflow: hidden
+
   .eventImageContainer
-    padding: 1rem 
-    margin: 1rem 
+    padding: 1rem
+    margin: 1rem
 
   .eventImage
-    width: 80vw 
-    height: 80vh 
-    border-radius: 2rem 
+    width: 80vw
+    height: 80vh
+    border-radius: 2rem
+
   .eventType, .eventDate, .eventTime, .eventTitle, .eventLocation
     font-size: 2rem
     margin: 0.3rem 0
+
   .eventDatePanel
-    margin-top: 2rem
-    font-size: 4rem
+    font-size: 10rem
     font-weight: bold
+
+  .eventMonDay
+    margin-top: 1rem
+    font-weight: bold
+    font-size: 4rem
+    position: relative
+    text-align: left
+
+  .dayTitle
+    font-size: 3rem
+    margin-top: 0
   .eventTimePanel
     font-size: 3rem
-    top: 20rem
+    margin-top: 2rem
+
   .eventTitlePanel
     font-size: 3rem
-    width: 35%
-    top: 30rem
+    width: 100%
+    margin-top: 2rem
+
   .eventDetailsPanel
     font-size: 3rem
-    top: 45rem
+    margin-top: 2rem
+
   .eventLocationPanel
     font-size: 3rem
+
   .eventDescriptionTitle
     font-size: 4rem
     left: 50%
+
   .eventDescriptionPanel
     font-size: 3rem
-    top: 8rem
-    margin-right: 100px
+    margin-top: 2rem
+
   .prevIcon, .nextIcon, .closeIcon
     height: 3rem
     width: 3rem
+
   .prevIcon, .nextIcon
     top: 40%
-@media (max-width: 940px) and (orientation: portrait)  /* Móviles en orientación vertical */
+
+@media (max-width: 940px) and (orientation: portrait)
   .eventCardDetail
-    width: 85vw
-    height: 60%
-  .eventCard 
+    width: 100vw
+    padding: 1rem
+
+  .eventCard
     width: 100px
     height: 100px
-    overflow: hidden 
     padding: 10px
+
   .eventImage
-    display: none // Oculta solo la imagen
+    display: none
 
   .eventType, .eventDate, .eventTime, .eventTitle, .eventLocation
     font-size: 0.5rem
     margin: 0
+
   .closeIcon
     width: 1.5rem
     height: 1.5rem
     top: 0.5rem
     right: 0.5rem
+
   .eventDatePanel, .eventTimePanel, .eventDetailsPanel, .eventLocationPanel
     font-size: 1rem
-    grid-column: span 2
-    grid-row-start: 1
-    grid-column-start: 1
-    margin-left: 1rem
-  .eventDatePanel
-    margin-top: 0.5rem
-    width: 100%
-  .eventTimePanel
-    top: 3.5rem
-  .eventTitlePanel
-    top: 4.5rem
-    font-size: 0.8rem
-    grid-column-start: 1
-    width: 80%
-    margin-left: 1rem
-
-  .eventDetailsPanel
-    top: 9rem
-  .eventLocationPanel
-    top: 10rem
-
-  .eventDescriptionTitle
-    font-size: 1rem
-    grid-row-start: 2
-    grid-column-end: 1
-    position: absolute
-    margin-left: 2.5rem
-    margin-bottom: 30px
-    bottom: 1rem
-
-  .eventDescriptionPanel
-    font-size: 0.5rem
-    grid-row-start: 2
-    grid-column-start: 1
-    left: 0
-    top: -4rem
-    position: absolute
     margin-left: 0.5rem
-    width: 90%
-    grid-column: span 3
-    overflow-y: auto
+
+  .eventTitlePanel
+    grid-column: 1 
+    grid-row: 1
+    font-size: 0.8rem
+    width: 100%
+    text-align: left
+  .eventDescriptionPanel
+    top: 1rem
+    grid-row: 1
+    position: relative
+    width: 100%
+    font-size: 0.5rem
+    text-align: left
+    grid-column: 1 / span 3
+  .eventDateWrapper
+    grid-column: 1
+    grid-row: 3
+    text-align: left
+  
+  .eventDatePanel
+    font-size: 4rem
+    margin-top: 0.5rem
+
+  .eventTimePanel
+    grid-column: 1
+    grid-row: 5
+    margin-top: 0
+    font-size: 1rem
+    white-space: nowrap
+  .eventMonDay
+    grid-row: 5
+    grid-column: 1
+    margin-left: 0
+    margin-top: 1rem
+    font-weight: bold
+    font-size: 1.5rem
+    position: relative
+    text-align: left
+  .dayTitle
+    margin-top: 0
+    font-size: 1.5rem
+
+  .eventLocationPanel
+    grid-column: 1
+    grid-row: 4
+    font-size: 0.8rem
+  
+  .prevIcon, .nextIcon, .closeIcon
+    height: 1rem
+    width: 1rem
+  .prevIcon
+    left: 0.2rem
+  .nextIcon 
+    right: 0.2rem
