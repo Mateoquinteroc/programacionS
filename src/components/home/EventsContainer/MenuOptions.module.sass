@@ -34,6 +34,12 @@
   display: none // Por defecto, el menú está oculto
   flex-direction: column
   padding: 0.5rem
+  display: flex
+  flex-direction: column
+  padding: 0.5rem
+  min-width: 180px         // ✅ Ancho mínimo elegante
+  max-width: 220px         // ✅ No más que esto
+  width: max-content       // ✅ Se adapta a su contenido, pero limitado
 
 .menuContainer:hover .menuPanel // Mostrar el menú al pasar el cursor sobre el contenedor
   display: flex
@@ -50,3 +56,4 @@
 
 .menuOption:hover
   background-color: #f5f5f5
+

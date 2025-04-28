@@ -40,6 +40,7 @@
   max-height: 300px
   overflow-y: auto
 
+
 .eventStripeFixed
   display: flex
   width: 100%
@@ -75,11 +76,11 @@
   border-radius: 10px
   cursor: pointer
   position: relative         // 🔐 Necesario para contener ::before
-  overflow: hidden           // 🔐 Recorta la línea al borde
 
   &:hover
     transform: scale(1.05)
     transition: transform 0.2s ease-in-out
+    z-index: 1
 
   &::before
     content: ''
