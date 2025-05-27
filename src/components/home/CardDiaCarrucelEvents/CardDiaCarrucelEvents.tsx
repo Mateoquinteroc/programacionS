@@ -16,7 +16,6 @@ type Props = {
 
 export const CardDiaCarrucelEvents: FC<Props> = ({
   eventos,
-  selectedEvent,
   onSelect,
 }) => {
   return (

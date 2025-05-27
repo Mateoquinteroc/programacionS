@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 const openSans = Open_Sans({
+  variable: "--font-open-sans",
   subsets: ['latin'],
   weight: ['300', '400', '600', '700'],
   display: 'swap',
@@ -42,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${openSans.variable} ${robotoMono.variable}`}>
         <Providers>
           {children}
         </Providers>
