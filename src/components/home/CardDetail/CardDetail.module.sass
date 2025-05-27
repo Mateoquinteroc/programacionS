@@ -45,6 +45,7 @@
 .eventCardDetail
   display: grid
   grid-template-columns: repeat(4, 1fr)
+  grid-template-rows: auto auto auto 
   position: relative
   width: 85vw
   height: 58%
@@ -66,11 +67,14 @@
 
 
 .eventImage
+  width: auto
+  height: 100%
   max-width: 100% 
   max-height: 100% 
   object-fit: contain 
   object-position: center 
   border-radius: 1rem
+  border: 10px solid
 
 
 .eventDate, .eventTime, .eventTitle, .eventLocation, .eventDetails
@@ -81,25 +85,33 @@
   font-size: 3rem
 .eventTitlePanel
   font-family: "Open Sans", sans-serif
-  font-size: 3rem
   font-weight: 700
   margin-bottom: 0.5rem
   text-align: left
-  grid-column-start: 3 
-  white-space: nowrap
-  
+  grid-column-start: 3
+  white-space: normal
+  max-width: 100%
+  font-size: clamp(1.5rem, 2.5vw, 3rem) // ✅ adapta entre 1.5rem y 3rem
+  line-height: 1.2
+  word-wrap: break-word
+  hyphens: auto
 
-.eventTitle
-  font-size: 2rem
-  font-weight: bold
-  margin-top: 1rem
-  grid-column-start: 3 
+.eventTitlePanel
+  grid-column: 3 / span 2
+  font-family: "Open Sans", sans-serif
+  font-weight: 700
+  margin-bottom: 0.25rem   // más sutil
+  text-align: left
+  font-size: clamp(1.5rem, 2.5vw, 3rem)
+  line-height: 1.2
+  white-space: normal
+
 
 .eventDateWrapper
   display: flex
   gap: 1rem
   grid-column-start: 3
-  grid-row: 4
+  grid-row: 3
   font-family: "Open Sans", sans-serif
   
 
@@ -120,49 +132,54 @@
   color: #000
   text-align: right
   position: relative
+  font-family: 'Roboto', sans-serif
   grid-row: 4
   grid-column: 3
 
-.eventLocationWrapper
-  display: flex
-  flex-direction: column
-  gap: 0.5rem
-  position: absolute
-  bottom: 2rem
-  grid-column-start: 3
-  grid-row: 5
-  font-family: "Open Sans", sans-serif
-  text-align: left
+// .eventLocationWrapper
+//   display: flex
+//   flex-direction: column
+//   gap: 0.5rem
+//   position: absolute
+//   bottom: 2rem
+//   grid-column-start: 3
+//   grid-row: 5
+//   font-family: "Open Sans", sans-serif
+//   text-align: left
 
 .eventLocationTitle
   font-size: 1.5rem
   font-weight: bold
+  font-family: 'Roboto', sans-serif
   color: #000000
   margin: 0
   text-align: left
 
+.eventTimeSpacePanel
+  grid-column-start: 3
+  grid-row: 4
+
 .eventLocationPanel
   text-align: left
   grid-column-start:3
-  grid-row: 5
+  grid-row: 4
   font-size: 2rem
   font-weight: 600
   color: #000000
 
 .eventTimePanel
   font-size: 2rem
+  padding-top: 1rem
   color: black
+  font-family: 'Roboto', sans-serif
   grid-column-start: 3
-  margin-top: 1rem
   text-align: left
-  grid-row: 6
+  grid-row: 4
 
 .eventTime
   font-size: 2rem
   margin-top: 0
   font-weight: 500
-
-
 
 .eventDetailsPanel
   font-size: 1.5rem
@@ -175,9 +192,6 @@
   grid-column-start: 2
   margin-left: 0
 
-
-
-
 .eventDescriptionTitle
   position: absolute
   transform: translateX(-80%) 
@@ -189,22 +203,26 @@
   left: 50%
   font-family: "Open Sans", sans-serif
   margin: 0.75rem 
-  margin-top: 1rem
-  grid-column-start: 3
-
+ 
 .eventDescriptionPanel
-  position: absolute
-  grid-column: 3 / span 2  // Usa columnas 3 y 4 si están libres
-  top: 5rem
+  position: relative
   font-size: 1rem
   line-height: 1.5
-  width: auto              // Se adapta al contenido
-  max-width: 80ch          // Mayor límite para expandirse en pantallas grandes
-  min-width: 30ch          // Asegura legibilidad mínima
+  width: 100%
+  max-width: 100ch
+  min-width: 30ch
+  max-height: 5rem 
+  overflow-y: auto
+  overflow-x: hidden
   color: #1f2937
   text-align: left
+  grid-column: 3 / span 3
+  grid-row: 3
 
 
+
+
+//carrucel 
   
 .scrollableEventList
   position: fixed
@@ -223,47 +241,105 @@
   align-items: center
 
 .eventCard
-  width: 170px
+  background-color: black
+  display: flex
+  align-items: center
+  gap: 1rem
+  width: 300px
   height: 170px
   padding: 1.5rem
   border-radius: 1rem
   cursor: pointer
   transition: transform 0.3s ease-in-out
+  overflow: hidden
 
 .eventCard:hover
   transform: translateY(-0.5rem)
 
-.eventType, .eventDate, .eventTime, .eventTitle, .eventLocation
+
+.eventDateContainer
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: start
+  min-width: max-content
+  flex-shrink: 0
+
+.eventDate
+  font-family: "Open Sans", sans-serif
+  font-weight: bold
+  font-size: 3rem
+  color: white
+  line-height: 1
+  transform: translateX(-1.1rem)
+
+.eventDateDay
+  font-family: "Open Sans", sans-serif
+  font-weight: bold
+  font-size: 1.5rem
+  color: white
+  line-height: 1
+
+.eventDataContainer
+  background-color: white
+  color: black
+  padding: 0.5rem 1rem      
+  border-radius: 0 0.75rem 0.75rem 0
+  flex: 1
+  display: flex
+  flex-direction: column
+  justify-content: center
+  height: 100px
+  overflow: hidden
+
+.eventTitle
+  color: black
+  font-family: "Open Sans", sans-serif
+  font-size: 0.9rem
+  margin: 0.1rem 0
+  font-weight: bold
+  overflow: hidden
+  display: -webkit-box
+  -webkit-line-clamp: 2
+  -webkit-box-orient: vertical
+  text-overflow: ellipsis
+
+.eventLocation, .eventTime
+  color: black
   font-family: "Open Sans", sans-serif
   font-size: 0.8rem
-  color: white
-  margin: 0.5rem 0
+  margin: 0.25rem 0
 
 
 
-@media (min-width: 1200px) and (max-width: 1800px)
+@media (min-width: 1000px) and (max-width: 1800px)
+  .cardDetailContainer
+    height: 80vh
+    margin-top: 1.5rem
   .eventCard
-    width: 120px
+    width: 300px
     height: 120px
     overflow: hidden
     padding: 10px
 
-  .eventType, .eventDate, .eventTime, .eventTitle, .eventLocation
-    font-size: 0.7rem
-    margin: 0.3rem 0
+  // .eventType, .eventDate, .eventTime, .eventTitle, .eventLocation
+  //   font-size: 0.7rem
+  //   margin: 0.3rem 0
 
   .eventDatePanel
     font-size: 5rem
     font-weight: bold
 
   .eventTimePanel
-    font-size: 1.5rem
+    font-size: 1rem
     margin-top: 0.5rem
 
   .eventTitlePanel
-    font-size: 2rem
+    font-size: 1.5rem
     width: 100%
-
+  
+  .eventTitle
+    font-size: 0.7rem
   .eventDetailsPanel
     font-size: 1rem
     margin-top: 1rem
@@ -276,7 +352,8 @@
     font-size: 1rem
   .eventDescriptionPanel
     font-size: 0.8rem
-    top: 3rem
+    top: 1rem
+    grid-row: 2
   .eventMonDay
     margin-top: 1rem
     font-weight: bold
@@ -286,26 +363,34 @@
   .dayTitle
     margin-top: 0
 
+
 @media (min-width: 2560px)
   .eventCardDetail
     width: 85vw
     height: 70%
 
   .eventCard
-    width: 350px
-    height: 350px
+    width: 700px
+    height: 300px
     overflow: hidden
 
   .eventImageContainer
     padding: 1rem
     margin: 1rem
+    width: auto
+    height: 100%
 
-  .eventImage
-    width: 80vw
-    height: 80vh
-    border-radius: 2rem
+  .eventDataContainer
+    height: 250px
 
-  .eventType, .eventDate, .eventTime, .eventTitle, .eventLocation
+  .eventDate
+    font-size: 7rem
+
+ 
+    font-size: 2rem
+  
+
+  .eventType,.eventTime, .eventTitle, .eventLocation
     font-size: 2rem
     margin: 0.3rem 0
 
@@ -328,7 +413,7 @@
     margin-top: 2rem
 
   .eventTitlePanel
-    font-size: 3rem
+    font-size: 4rem
     width: 100%
     margin-top: 2rem
 
@@ -345,7 +430,8 @@
 
   .eventDescriptionPanel
     font-size: 3rem
-    margin-top: 2rem
+    grid-row: 2
+    max-height: 30rem
 
   .prevIcon, .nextIcon, .closeIcon
     height: 3rem
@@ -355,21 +441,61 @@
     top: 40%
 
 @media (max-width: 940px) and (orientation: portrait)
+  .cardDetailContainer
+    height: 70vh
   .eventCardDetail
-    width: 100vw
+    margin: 0
+    padding: 0
+    width: 50%
+    height: 100%
     padding: 1rem
 
   .eventCard
-    width: 100px
-    height: 100px
+    width: 200px
+    height: 75px
     padding: 10px
+    gap: 0.5rem
+
+  .eventDataContainer
+    height: 70px
+    width: 200px
+    margin: 0
+    padding: 5
+
+  .eventDateContainer
+    width: 50px
+    min-width: 30px
 
   .eventImage
-    display: none
+    width: auto
+    height: 89%
+    grid-column-start:  3
+    transform: translate(10%, 0%)
 
-  .eventType, .eventDate, .eventTime, .eventTitle, .eventLocation
+  .eventImageContainer
+    width: 100%
+
+    grid-column: 1 /span 2
+    grid-row: 1 /span 2
+    margin: 0
+    padding-top: 2rem
+    display: flex
+    justify-content: center
+    align-items: center
+
+
+
+  .eventDate
+    font-size: 1.5rem
+    transform: translateX(-1rem)
+  
+  .eventDateDay
+    font-size: 0.5rem
+
+  .eventType, .eventTime, .eventTitle, .eventLocation
     font-size: 0.5rem
     margin: 0
+    padding: 0
 
   .closeIcon
     width: 1.5rem
@@ -382,50 +508,60 @@
     margin-left: 0.5rem
 
   .eventTitlePanel
-    grid-column: 1 
-    grid-row: 1
+    grid-column: 1 / span 3
+    grid-row: 1 /span 7
     font-size: 0.8rem
     width: 100%
     text-align: left
   .eventDescriptionPanel
-    top: 1rem
-    grid-row: 1
-    position: relative
-    width: 100%
-    font-size: 0.5rem
-    text-align: left
-    grid-column: 1 / span 3
+    position: absolute
+    top: 3rem
+    height: 55px
+    margin-left: 1rem
+    width: 180%
+    font-size: 0.8rem
+    grid-column: 8 
+    grid-row: 3 / span 2
+    
+
   .eventDateWrapper
     grid-column: 1
-    grid-row: 3
+    grid-row: 3/span 2
     text-align: left
+    height: 50px
+    margin-left: 0
+    padding-left: 0
   
   .eventDatePanel
-    font-size: 4rem
-    margin-top: 0.5rem
+    font-size: 3rem
+    margin-top: -0.5rem
 
-  .eventTimePanel
-    grid-column: 1
-    grid-row: 5
-    margin-top: 0
-    font-size: 1rem
-    white-space: nowrap
   .eventMonDay
-    grid-row: 5
+    grid-row: 3
     grid-column: 1
     margin-left: 0
-    margin-top: 1rem
+    margin-top: -0.25rem
+    margin-left: -0.5rem
     font-weight: bold
-    font-size: 1.5rem
+    font-size: 1rem
     position: relative
     text-align: left
   .dayTitle
-    margin-top: 0
-    font-size: 1.5rem
+    font-size: 1rem
+    margin-left: -0.5rem
+
+  .eventTimePanel
+    grid-column: 2
+    grid-row: 3
+    font-size: 0.9rem
+    margin-top: 0.8rem 
+    margin-left: 1rem
+    white-space: nowrap
 
   .eventLocationPanel
-    grid-column: 1
-    grid-row: 4
+    grid-column: 2 /span 2
+    grid-row: 3
+    margin-left: 1rem
     font-size: 0.8rem
   
   .prevIcon, .nextIcon, .closeIcon

@@ -7,8 +7,12 @@ import { format, eachDayOfInterval } from "date-fns";
 import { es } from "date-fns/locale";
 import { EventsContainer } from "../EventsContainer/EventsContainer";
 
+// 🔠 Función para poner en mayúscula la primera letra
+const capitalize = (str: string) =>
+  str.charAt(0).toUpperCase() + str.slice(1);
+
 export const CardDia = ({
-  eventos: initialEvents, // Renombramos para diferenciar iniciales
+  eventos: initialEvents,
   onSelect,
   isAdminMode,
   from,
@@ -23,14 +27,13 @@ export const CardDia = ({
   const [currentEvents, setCurrentEvents] = useState<SelectEvent[]>([]);
 
   useEffect(() => {
-    setCurrentEvents(initialEvents); // Inicializar el estado con eventos recibidos
+    setCurrentEvents(initialEvents);
   }, [initialEvents]);
 
   if (!currentEvents.length && !isAdminMode) {
     return <p>No hay eventos disponibles</p>;
   }
 
-  // Agrupar eventos por día
   const eventsByDay = currentEvents.reduce(
     (prev: Record<string, { date: Date; eventos: SelectEvent[] }>, curr) => {
       const day = format(curr.dateFrom, "iiii d", { locale: es });
@@ -44,7 +47,6 @@ export const CardDia = ({
     {}
   );
 
-  // Calcular días de la semana completa en base a `from` y `to`
   const fullWeekDays = () => {
     const days = eachDayOfInterval({ start: from, end: to });
     return days.map((date) => {
@@ -88,7 +90,7 @@ export const CardDia = ({
       {daysToRender.map(({ dayKey, date, eventos }) => (
         <div key={dayKey} className={styles.dayContainer}>
           <h2 className={styles.dayTitle}>
-            {format(date, "iiii d", { locale: es })}
+            {capitalize(format(date, "iiii d", { locale: es }))}
           </h2>
           <EventsContainer
             eventos={eventos}
@@ -98,11 +100,11 @@ export const CardDia = ({
             onEventUpdated={handleEventUpdate}
           />
           <div className={styles.eventStripeFixed}>
-          <div className={styles.colorBlockYellow}></div>
-          <div className={styles.colorBlockOrange}></div>
-          <div className={styles.colorBlockPink}></div>
-          <div className={styles.colorBlockRed}></div>
-          <div className={styles.colorBlockWine}></div>
+            <div className={styles.colorBlockYellow}></div>
+            <div className={styles.colorBlockOrange}></div>
+            <div className={styles.colorBlockPink}></div>
+            <div className={styles.colorBlockRed}></div>
+            <div className={styles.colorBlockWine}></div>
           </div>
         </div>
       ))}
